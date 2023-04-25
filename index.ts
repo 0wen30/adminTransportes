@@ -10,6 +10,9 @@ import rel_productos_compras from "./src/routes/rel_productos_compras";
 import rel_productos_mtto from "./src/routes/rel_productos_mtto";
 import unidades from "./src/routes/unidades";
 import app from "./src/server";
+import cors  from 'cors';
+
+app.use(cors());
 
 const connection = dbConnection();
 

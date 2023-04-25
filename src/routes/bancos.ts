@@ -5,6 +5,8 @@ export default (app: Express, connection: Connection) => {
 
     app.post(`/bancos`, (req, res) => {
 
+        console.log(req.body)
+
         const { nombre } = req.body;
         const sql = `INSERT INTO bancos (nombre) VALUES ( ? )`;
         connection.query(sql,nombre,(err, result) => {

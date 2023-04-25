@@ -7,4 +7,5 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.set('port', process.env.PORT || 3000);
 app.use(express_1.default.json());
+app.use(express_1.default.static('public'));
 exports.default = app;

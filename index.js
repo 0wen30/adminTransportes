@@ -15,6 +15,8 @@ const rel_productos_compras_1 = __importDefault(require("./src/routes/rel_produc
 const rel_productos_mtto_1 = __importDefault(require("./src/routes/rel_productos_mtto"));
 const unidades_1 = __importDefault(require("./src/routes/unidades"));
 const server_1 = __importDefault(require("./src/server"));
+const cors_1 = __importDefault(require("cors"));
+server_1.default.use((0, cors_1.default)());
 const connection = (0, dbConnection_1.default)();
 (0, productos_1.default)(server_1.default, connection);
 (0, compras_1.default)(server_1.default, connection);
