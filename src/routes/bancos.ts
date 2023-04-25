@@ -17,13 +17,30 @@ export default (app: Express, connection: Connection) => {
     });
 
     app.get(`/bancos`, (req, res) => {
-
         const sql = `SELECT * FROM bancos`;
         connection.query(sql,(err, result) => {
             if (err) return console.log(err)
             return res.json(result)
         });
+    });
 
+    app.put(`/bancos`, (req, res) => {
+        const { id } = req.query;
+        const { nombre } = req.body;
+        const sql = `UPDATE bancos SET nombre = ? WHERE id = ?`;
+        connection.query(sql,[nombre,id],(err, result) => {
+            if (err) return console.log(err)
+            return res.json(result)
+        });
+    });
+
+    app.delete(`/bancos`, (req, res) => {
+        const  { id } = req.query;
+        const sql = `DELETE FROM bancos WHERE id = ?`;
+        connection.query(sql,id,(err, result) => {
+            if (err) return console.log(err)
+            return res.json(result)
+        });
     });
 
 };

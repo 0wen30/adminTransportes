@@ -19,4 +19,24 @@ exports.default = (app, connection) => {
             return res.json(result);
         });
     });
+    app.put(`/proveedores`, (req, res) => {
+        const { id } = req.query;
+        const { nombre, comentario = "" } = req.body;
+        const values = [nombre, comentario, id];
+        const sql = `UPDATE proveedores SET nombre = ?, comentario = ? WHERE id = ?`;
+        connection.query(sql, values, (err, result) => {
+            if (err)
+                return console.log(err);
+            return res.json(result);
+        });
+    });
+    app.delete(`/proveedores`, (req, res) => {
+        const { id } = req.query;
+        const sql = `DELETE FROM proveedores WHERE id = ?`;
+        connection.query(sql, id, (err, result) => {
+            if (err)
+                return console.log(err);
+            return res.json(result);
+        });
+    });
 };

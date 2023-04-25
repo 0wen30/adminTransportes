@@ -19,4 +19,24 @@ exports.default = (app, connection) => {
             return res.json(result);
         });
     });
+    app.put(`/unidades`, (req, res) => {
+        const { id } = req.query;
+        const { unidad } = req.body;
+        const values = [unidad, id];
+        const sql = `UPDATE unidades SET unidad = ? WHERE id = ?`;
+        connection.query(sql, values, (err, result) => {
+            if (err)
+                return console.log(err);
+            return res.json(result);
+        });
+    });
+    app.delete(`/unidades`, (req, res) => {
+        const { id } = req.query;
+        const sql = `DELETE FROM unidades WHERE id = ?`;
+        connection.query(sql, id, (err, result) => {
+            if (err)
+                return console.log(err);
+            return res.json(result);
+        });
+    });
 };
